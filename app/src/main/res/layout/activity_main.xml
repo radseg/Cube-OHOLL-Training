@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/tv_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/group_select"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/chk_tv1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="70dp"
+        android:button="@color/black"
+        android:checked="false"
+        android:gravity="center"
+        android:text="@string/group_1"
+        android:textAlignment="gravity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_select" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/chk_tv2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:button="@color/black"
+        android:gravity="center"
+        android:text="@string/group_2"
+        android:textAlignment="gravity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chk_tv1" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/chk_tv3"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:button="@color/black"
+        android:gravity="center"
+        android:text="@string/group_3"
+        android:textAlignment="gravity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chk_tv2" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/chk_tv4"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:button="@color/black"
+        android:gravity="center"
+        android:text="@string/group_4"
+        android:textAlignment="gravity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chk_tv3" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/chk_tv5"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:button="@color/black"
+        android:gravity="center"
+        android:text="@string/group_5"
+        android:textAlignment="gravity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chk_tv4" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/chk_tv6"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:button="@color/black"
+        android:gravity="center"
+        android:text="@string/group_6"
+        android:textAlignment="gravity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chk_tv5" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/chk_tv7"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:button="@color/black"
+        android:gravity="center"
+        android:text="@string/group_7"
+        android:textAlignment="gravity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chk_tv6" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/chk_tv8"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:button="@color/black"
+        android:gravity="center"
+        android:text="@string/group_8"
+        android:textAlignment="gravity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chk_tv7" />
+
+    <Button
+        android:id="@+id/btn_ok"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/group_ok"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chk_tv8" />
+</androidx.constraintlayout.widget.ConstraintLayout>

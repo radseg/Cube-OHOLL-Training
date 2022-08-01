@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">OH_OLL</string>
+    <string name="group_last">＜</string>
+    <string name="group_next">＞</string>
+    <string name="group_1">All Edges Oriented Cprrectly</string>
+    <string name="group_2">T , Square , C , W Shapes</string>
+    <string name="group_3">Oriented Corners and P Shapes</string>
+    <string name="group_4">I and fish Shapes</string>
+    <string name="group_5">Knight Move and Awkward Shapes</string>
+    <string name="group_6">L Shapes</string>
+    <string name="group_7">Lightning Bolt Shapes</string>
+    <string name="group_8">No Edges Oriented</string>
+    <string name="group_select">請選擇你要練習的組合</string>
+    <string name="group_ok">確定</string>
+    <string name="scramble">打亂 : </string>
+    <string name="solve">解法 : </string>
+</resources>
