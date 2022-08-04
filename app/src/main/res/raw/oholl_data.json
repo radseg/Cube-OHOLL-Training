@@ -1,0 +1,347 @@
+{
+  "OHOLL":
+  [
+    {
+      "OHoll_num": "OLL26",
+      "OHoll_group": "All Edges Oriented Cprrectly",
+      "scramble": "R U' L' U R' U' L",
+      "solve": "R U2 R' U' R U' R'"
+    },
+    {
+      "OHoll_num": "OLL27",
+      "OHoll_group": "All Edges Oriented Cprrectly",
+      "scramble": "L' U' L U' L' U2' L",
+      "solve": "R U R' U R U2' R'"
+    },
+    {
+      "OHoll_num": "OLL21",
+      "OHoll_group": "All Edges Oriented Cprrectly",
+      "scramble": "F U R U' R' U R U' R' U R U' R' F'",
+      "solve": "R U2 R' U' R U R' U' R U' R'"
+    },
+    {
+      "OHoll_num": "OLL22",
+      "OHoll_group": "All Edges Oriented Cprrectly",
+      "scramble": "F U R U' R' F' f U R U' R' f'",
+      "solve": "R U2 R2 U' R2 U' R2 U2 R"
+    },
+    {
+      "OHoll_num": "OLL23",
+      "OHoll_group": "All Edges Oriented Cprrectly",
+      "scramble": "R U2' R D R' U2' R D' R2'",
+      "solve": "(R U U' R')*2 L' (U R U' R')*2 L"
+    },
+    {
+      "OHoll_num": "OLL24",
+      "OHoll_group": "All Edges Oriented Cprrectly",
+      "scramble": "F R' F' r U R U' r'",
+      "solve": "(R U U' R') L' (U R U' R') L"
+    },
+    {
+      "OHoll_num": "OLL25",
+      "OHoll_group": "All Edges Oriented Cprrectly",
+      "scramble": "R' F' r U R U' r' F",
+      "solve": "(R U R' U') (R U' R' U2) (R U' R' U2) R U R'"
+    },
+    {
+      "OHoll_num": "OLL33",
+      "OHoll_group": "T , Square , C , W Shapes",
+      "scramble": "F R U' R' U' R U R' F'",
+      "solve": "(R U R' U') (R' F R F')"
+    },
+    {
+      "OHoll_num": "OLL45",
+      "OHoll_group": "T , Square , C , W Shapes",
+      "scramble": "F (U R U' R') F'",
+      "solve": "F (R U R' U') F'"
+    },
+    {
+      "OHoll_num": "OLL5",
+      "OHoll_group": "T , Square , C , W Shapes",
+      "scramble": "R' F' r U' r' F2' R",
+      "solve": "r' U2 R U R' U r"
+    },
+    {
+      "OHoll_num": "OLL6",
+      "OHoll_group": "T , Square , C , W Shapes",
+      "scramble": "F' U' F2' R' F' R2' U' R'",
+      "solve": "r U2 R' U' R U' r'"
+    },
+    {
+      "OHoll_num": "OLL34",
+      "OHoll_group": "T , Square , C , W Shapes",
+      "scramble": "r U R' U' r' F R U R U' R' F'",
+      "solve": "(R U R2 U') (R' F R U) R U' F'"
+    },
+    {
+      "OHoll_num": "OLL46",
+      "OHoll_group": "T , Square , C , W Shapes",
+      "scramble": "R U2' R' d' F R U' R' F'",
+      "solve": "R' U' (R' F R F') U R"
+    },
+    {
+      "OHoll_num": "OLL36",
+      "OHoll_group": "T , Square , C , W Shapes",
+      "scramble": "F' L F L' U' L' U' L U L' U L",
+      "solve": "(R' U' R U') (R' U R U) l U' R' U x"
+    },
+    {
+      "OHoll_num": "OLL38",
+      "OHoll_group": "T , Square , C , W Shapes",
+      "scramble": "F R' F' r U R U R' U' R U' r'",
+      "solve": "(R U R' U) (R U' R' U') (R' F R F')"
+    },
+    {
+      "OHoll_num": "OLL28",
+      "OHoll_group": "Oriented Corners and P Shapes",
+      "scramble": "M U' M' U2' M U' M'",
+      "solve": "(r U R' U') M (U R U' R')"
+    },
+    {
+      "OHoll_num": "OLL57",
+      "OHoll_group": "Oriented Corners and P Shapes",
+      "scramble": "r U R' U' R r' U R U' R'",
+      "solve": "(R U R' U') M' (U R U' r')"
+    },
+    {
+      "OHoll_num": "OLL31",
+      "OHoll_group": "Oriented Corners and P Shapes",
+      "scramble": "R U R' U R U' R' U' R' F R F'",
+      "solve": "(R' U' F) (U R U' R') F' R"
+    },
+    {
+      "OHoll_num": "OLL32",
+      "OHoll_group": "Oriented Corners and P Shapes",
+      "scramble": "L F' L' U' L U F U' L'",
+      "solve": "S (R U R'U') (R'F R f')"
+    },
+    {
+      "OHoll_num": "OLL43",
+      "OHoll_group": "Oriented Corners and P Shapes",
+      "scramble": "R' F' U' F U R",
+      "solve": "f' (L' U' L U) f"
+    },
+    {
+      "OHoll_num": "OLL44",
+      "OHoll_group": "Oriented Corners and P Shapes",
+      "scramble": "F R U R' U' F'",
+      "solve": "f (R U R' U') f'"
+    },
+    {
+      "OHoll_num": "OLL51",
+      "OHoll_group": "I and fish Shapes",
+      "scramble": "F R U R' U' R U R' U' F'",
+      "solve": "f (R U R' U') (R U R' U') f'"
+    },
+    {
+      "OHoll_num": "OLL56",
+      "OHoll_group": "I and fish Shapes",
+      "scramble": "r U R U' r' F R' U R U' R' F'",
+      "solve": "r' U' r (U' R' U R) (U' R' U R) r' U r"
+    },
+    {
+      "OHoll_num": "OLL52",
+      "OHoll_group": "I and fish Shapes",
+      "scramble": "R' F' U' F U' R U R' U R",
+      "solve": "(R U R' U) R d' (R U' R' F')"
+    },
+    {
+      "OHoll_num": "OLL55",
+      "OHoll_group": "I and fish Shapes",
+      "scramble": "F R' F' U2' R U R' U R2' U2' R'",
+      "solve": "r U2 (R2 F R F') U2 (r' F R F')"
+    },
+    {
+      "OHoll_num": "OLL9",
+      "OHoll_group": "I and fish Shapes",
+      "scramble": "L' U2' L F' L F L' U L' U L",
+      "solve": "(R U R' U') (R' F R2 U) (R' U' F')"
+    },
+    {
+      "OHoll_num": "OLL10",
+      "OHoll_group": "I and fish Shapes",
+      "scramble": "F' U' L' U L2' F L' U' L' U L",
+      "solve": "(R U R' U) (R' F R F') (R U2 R')"
+    },
+    {
+      "OHoll_num": "OLL35",
+      "OHoll_group": "I and fish Shapes",
+      "scramble": "R U2' R' U' R U' R' f U R U' R' f'",
+      "solve": "(R U2') (R2 F R F') (R U2 R')"
+    },
+    {
+      "OHoll_num": "OLL37",
+      "OHoll_group": "I and fish Shapes",
+      "scramble": "R U R' U' R' F R F'",
+      "solve": "F (R U' R' U') (R U R' F')"
+    },
+    {
+      "OHoll_num": "OLL13",
+      "OHoll_group": "Knight Move and Awkward Shapes",
+      "scramble": "F R U' R' U R U2' R' U' F'",
+      "solve": "(r U' r' U') (r U r') y' (R' U R)"
+    },
+    {
+      "OHoll_num": "OLL14",
+      "OHoll_group": "Knight Move and Awkward Shapes",
+      "scramble": "F U F' l' U l U' l' U' l",
+      "solve": "(R' F R U) (R' F' R) y' (R U' R')"
+    },
+    {
+      "OHoll_num": "OLL16",
+      "OHoll_group": "Knight Move and Awkward Shapes",
+      "scramble": "R' U2' R U R' F U R U' R' F' R",
+      "solve": "(r U r') (R U R' U') (r U' r')"
+    },
+    {
+      "OHoll_num": "OLL15",
+      "OHoll_group": "Knight Move and Awkward Shapes",
+      "scramble": "R' F' R U' L' U L R' F R",
+      "solve": "(r' U' r) (R' U' R U) (r' U r)"
+    },
+    {
+      "OHoll_num": "OLL29",
+      "OHoll_group": "Knight Move and Awkward Shapes",
+      "scramble": "M F R' F' R U R U' R' U' M'",
+      "solve": "(R U R' U') (R U' R') (F' U' F) (R U R')"
+    },
+    {
+      "OHoll_num": "OLL30",
+      "OHoll_group": "Knight Move and Awkward Shapes",
+      "scramble": "M F' L F L' U' L' U L U M'",
+      "solve": "(r' D' r U' r' D) r2 U' (r' U r U r')"
+    },
+    {
+      "OHoll_num": "OLL41",
+      "OHoll_group": "Knight Move and Awkward Shapes",
+      "scramble": "L' U L U' L' U L F' L F L' F' L F L'",
+      "solve": "(R U R' U R U2 R') F (R U R' U') F'"
+    },
+    {
+      "OHoll_num": "OLL42",
+      "OHoll_group": "Knight Move and Awkward Shapes",
+      "scramble": "M F U R U' R' F' U' M'",
+      "solve": "(R' U' R U' R' U2 R) F (R U R' U') F'"
+    },
+    {
+      "OHoll_num": "OLL48",
+      "OHoll_group": "L Shapes",
+      "scramble": "F R' F' R U2' R U' R' U R U2' R'",
+      "solve": "F (R U R' U') (R U R' U') F'"
+    },
+    {
+      "OHoll_num": "OLL47",
+      "OHoll_group": "L Shapes",
+      "scramble": "R' U' F R' F' R F R' F' R U R",
+      "solve": "F' (L' U' L U) (L' U' L U) F"
+    },
+    {
+      "OHoll_num": "OLL49",
+      "OHoll_group": "L Shapes",
+      "scramble": "R B' R' B U2' R2' F R F' R",
+      "solve": "(l U') (l2 U l2 U) (l2 U') l"
+    },
+    {
+      "OHoll_num": "OLL50",
+      "OHoll_group": "L Shapes",
+      "scramble": "F U R U' R' F' R U R' U R U2' R'",
+      "solve": "(r' U) (r2 U' r2 U') (r2 U) r'"
+    },
+    {
+      "OHoll_num": "OLL53",
+      "OHoll_group": "L Shapes",
+      "scramble": "F R' F R F2' U2' L F' L' F",
+      "solve": "(r' U') (R U' R' U R U') R' U2 r"
+    },
+    {
+      "OHoll_num": "OLL54",
+      "OHoll_group": "L Shapes",
+      "scramble": "F' L F' L' F2' U2' R' F R F'",
+      "solve": "(r U) (R' U R U' R' U) R U2 r'"
+    },
+    {
+      "OHoll_num": "OLL7",
+      "OHoll_group": "Lightning Bolt Shapes",
+      "scramble": "F' L F L' U2' L' U2' L",
+      "solve": "r U R' U R U2 r'"
+    },
+    {
+      "OHoll_num": "OLL8",
+      "OHoll_group": "Lightning Bolt Shapes",
+      "scramble": "F R' F' R U2' R U2' R'",
+      "solve": "r' U' R U' R' U2 r"
+    },
+    {
+      "OHoll_num": "OLL11",
+      "OHoll_group": "Lightning Bolt Shapes",
+      "scramble": "r U2' R' F R' F' R U' R U' r'",
+      "solve": "F' (L' U' L U) F U F (R U R' U') F'"
+    },
+    {
+      "OHoll_num": "OLL12",
+      "OHoll_group": "Lightning Bolt Shapes",
+      "scramble": "r R' U R' U2' R U R' U R2' r'",
+      "solve": "F (R U R' U') F' U F (R U R' U') F'"
+    },
+    {
+      "OHoll_num": "OLL39",
+      "OHoll_group": "Lightning Bolt Shapes",
+      "scramble": "R U2' R' U' F' U F R U' R'",
+      "solve": "(L F') (L' U' L U) F U' L'"
+    },
+    {
+      "OHoll_num": "OLL40",
+      "OHoll_group": "Lightning Bolt Shapes",
+      "scramble": "R U r D r' U' r D' r' R'",
+      "solve": "(R' F) (R U R' U') F' U R"
+    },
+    {
+      "OHoll_num": "OLL1",
+      "OHoll_group": "No Edges Oriented",
+      "scramble": "R U' R2' D' r U r' D R2' U R'",
+      "solve": "(R U2') (R2' F R F') U2 (R' F R F')"
+    },
+    {
+      "OHoll_num": "OLL2",
+      "OHoll_group": "No Edges Oriented",
+      "scramble": "r U r' U2' R U2' R' U2' r U' r'",
+      "solve": "F (R U R' U') F' f (R U R' U') f'"
+    },
+    {
+      "OHoll_num": "OLL3",
+      "OHoll_group": "No Edges Oriented",
+      "scramble": "M U' r U2' r' U' R U' R2' r",
+      "solve": "f (R U R' U') f' U' F (R U R' U') F'"
+    },
+    {
+      "OHoll_num": "OLL4",
+      "OHoll_group": "No Edges Oriented",
+      "scramble": "r' R2' U R' U r U2' r' U M'",
+      "solve": "f (R U R' U') f' U (F R U R' U') F'"
+    },
+    {
+      "OHoll_num": "OLL18",
+      "OHoll_group": "No Edges Oriented",
+      "scramble": "F R' F' R U2' R y U' R U' R' F'",
+      "solve": "r U R' U R U2 r2 U' R U' R' U2 r"
+    },
+    {
+      "OHoll_num": "OLL19",
+      "OHoll_group": "No Edges Oriented",
+      "scramble": "F R' F' R2' r' U R U' R' U' R' r",
+      "solve": "M U (R U R' U') M' (R' F R F')"
+    },
+    {
+      "OHoll_num": "OLL17",
+      "OHoll_group": "No Edges Oriented",
+      "scramble": "M U R U R' U' r R2' F R F'",
+      "solve": "(R U R' U) (R' F R F') U2 (R' F R F')"
+    },
+    {
+      "OHoll_num": "OLL20",
+      "OHoll_group": "No Edges Oriented",
+      "scramble": "M U (R U R' U') M2' (U R U' r')",
+      "solve": "M U (R U R' U') M2' (U R U' r')"
+    }
+  ]
+}	
