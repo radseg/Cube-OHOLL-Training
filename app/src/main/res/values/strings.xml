@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">OH_OLL</string>
-    <string name="group_last">＜</string>
-    <string name="group_next">＞</string>
+    <string name="group_previous">＞</string>
+    <string name="group_next">＜</string>
     <string name="group_1">All Edges Oriented Cprrectly</string>
     <string name="group_2">T , Square , C , W Shapes</string>
     <string name="group_3">Oriented Corners and P Shapes</string>

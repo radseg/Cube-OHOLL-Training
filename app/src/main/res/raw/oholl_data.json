@@ -3,43 +3,43 @@
   [
     {
       "OHoll_num": "OLL26",
-      "OHoll_group": "All Edges Oriented Cprrectly",
+      "OHoll_group": "All Edges Oriented Correctly",
       "scramble": "R U' L' U R' U' L",
       "solve": "R U2 R' U' R U' R'"
     },
     {
       "OHoll_num": "OLL27",
-      "OHoll_group": "All Edges Oriented Cprrectly",
+      "OHoll_group": "All Edges Oriented Correctly",
       "scramble": "L' U' L U' L' U2' L",
       "solve": "R U R' U R U2' R'"
     },
     {
       "OHoll_num": "OLL21",
-      "OHoll_group": "All Edges Oriented Cprrectly",
+      "OHoll_group": "All Edges Oriented Correctly",
       "scramble": "F U R U' R' U R U' R' U R U' R' F'",
       "solve": "R U2 R' U' R U R' U' R U' R'"
     },
     {
       "OHoll_num": "OLL22",
-      "OHoll_group": "All Edges Oriented Cprrectly",
+      "OHoll_group": "All Edges Oriented Correctly",
       "scramble": "F U R U' R' F' f U R U' R' f'",
       "solve": "R U2 R2 U' R2 U' R2 U2 R"
     },
     {
       "OHoll_num": "OLL23",
-      "OHoll_group": "All Edges Oriented Cprrectly",
+      "OHoll_group": "All Edges Oriented Correctly",
       "scramble": "R U2' R D R' U2' R D' R2'",
       "solve": "(R U U' R')*2 L' (U R U' R')*2 L"
     },
     {
       "OHoll_num": "OLL24",
-      "OHoll_group": "All Edges Oriented Cprrectly",
+      "OHoll_group": "All Edges Oriented Correctly",
       "scramble": "F R' F' r U R U' r'",
       "solve": "(R U U' R') L' (U R U' R') L"
     },
     {
       "OHoll_num": "OLL25",
-      "OHoll_group": "All Edges Oriented Cprrectly",
+      "OHoll_group": "All Edges Oriented Correctly",
       "scramble": "R' F' r U R U' r' F",
       "solve": "(R U R' U') (R U' R' U2) (R U' R' U2) R U R'"
     },

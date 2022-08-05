@@ -6,8 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,16 +24,23 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static android.text.InputType.TYPE_NULL;
+import static android.content.ContentValues.TAG;
 
 public class MainActivity2 extends AppCompatActivity {
     private ImageView iv_OHOLL;
-    private TextView tv_solve;
-    private ArrayList<String> chk_select1 = new ArrayList<String>();
-    private String oll[] = new String[57];
-    private String group[] = new String[57];
-    private String scramble[] = new String[57];
-    private String solve[] = new String[57];
+    private TextView tv_ollnum,tv_group,tv_scramble,tv_solve;
+    private int[]btn = {R.id.btn_groupNext, R.id.btn_groupPrevious, R.id.btn_previous, R.id.btn_next};
+    private int[]picture = {R.drawable.oll_1,R.drawable.oll_2,R.drawable.oll_3,R.drawable.oll_4,R.drawable.oll_5,R.drawable.oll_6,R.drawable.oll_7,R.drawable.oll_8,R.drawable.oll_9,R.drawable.oll_10,R.drawable.oll_11,R.drawable.oll_12,R.drawable.oll_13,R.drawable.oll_14,R.drawable.oll_15,R.drawable.oll_16,R.drawable.oll_17,R.drawable.oll_18,R.drawable.oll_19,R.drawable.oll_20,
+            R.drawable.oll_21,R.drawable.oll_22,R.drawable.oll_23,R.drawable.oll_24,R.drawable.oll_25,R.drawable.oll_26,R.drawable.oll_27,R.drawable.oll_28,R.drawable.oll_29,R.drawable.oll_30,R.drawable.oll_31,R.drawable.oll_32,R.drawable.oll_33,R.drawable.oll_34,R.drawable.oll_35,R.drawable.oll_36,R.drawable.oll_37,R.drawable.oll_38,R.drawable.oll_39,R.drawable.oll_40,
+            R.drawable.oll_41,R.drawable.oll_42,R.drawable.oll_43,R.drawable.oll_44,R.drawable.oll_45,R.drawable.oll_46,R.drawable.oll_47,R.drawable.oll_48,R.drawable.oll_49,R.drawable.oll_50,R.drawable.oll_51,R.drawable.oll_52,R.drawable.oll_53,R.drawable.oll_54,R.drawable.oll_55,R.drawable.oll_56,R.drawable.oll_57};
+    private int num=0;
+    private ArrayList<Integer> group_num = new ArrayList<Integer>();//把選取的群組第一個索引值放入group_num
+    private ArrayList<String> chk_select = new ArrayList<String>();//接收MainActivity傳來的群組
+    private ArrayList<String> al_DBnum = new ArrayList<String>();
+    private ArrayList<String> al_ollnum = new ArrayList<String>();
+    private ArrayList<String> al_group = new ArrayList<String>();
+    private ArrayList<String> al_scramble = new ArrayList<String>();
+    private ArrayList<String> al_solve = new ArrayList<String>();
     private SQLiteDatabase mOHollDB;
     private static final String DB_FILE = "oholl.db" , DB_TABLE = "oholl";
     @Override
@@ -39,67 +49,163 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
         iv_OHOLL = findViewById(R.id.iv_oll);
         iv_OHOLL.setImageResource(R.drawable.oll_1);
+        tv_ollnum = findViewById(R.id.tv_ollnum);
+        tv_group = findViewById(R.id.tv_group);
+        tv_scramble = findViewById(R.id.tv_scramble);
         tv_solve = findViewById(R.id.tv_solve);
+        /*
         tv_solve.setOnClickListener(v -> {
             tv_solve.setInputType(TYPE_NULL);
             tv_solve.setBackgroundColor(getResources().getColor(R.color.teal_200));
         });
-
-        OHOLL_DBOpenHelper OHollDBOpenHelper =
-                new OHOLL_DBOpenHelper(getApplicationContext() , DB_FILE , null , 1);
-        mOHollDB = OHollDBOpenHelper.getWritableDatabase();
-
-        Intent intent = getIntent();
-        chk_select1 = intent.getStringArrayListExtra("chk_select");
-
+        */
+        for (int id:btn) {((Button)findViewById(id)).setOnClickListener(btnClick);}
         load();
-        putDataToDB();
-    }
+        dataToObject(num);
 
 
-    private void putDataToDB(){
-        Cursor c = mOHollDB.query(true, DB_TABLE, new String[]{"_id","OHoll_num","OHoll_group","scramble","solve"},
-                null, null, null, null, null, null);
-        if (c == null)
-            return;
 
-        if (c.getCount() == 0) {
-            for (int i = 0; i < oll.length; i++) {
-                ContentValues newRow = new ContentValues();
-                newRow.put("OHoll_num", oll[i]);
-                newRow.put("OHoll_group",group[i]);
-                newRow.put("scramble", scramble[i]);
-                newRow.put("solve", solve[i]);
-                mOHollDB.insert(DB_TABLE, null, newRow);
-            }
-        }
     }
 
     private void load(){
+        //把res/raw/oholl_data.json裡面的內容全部讀入
         InputStream ollData = getResources().openRawResource(R.raw.oholl_data);
         Scanner scanner = new Scanner(ollData);
         StringBuilder builder = new StringBuilder();
         while (scanner.hasNextLine()){
             builder.append(scanner.nextLine());
         }
-        parseJson(builder.toString());
+        parseJsonToDB(builder.toString());
+
+
     }
 
 
-    private void parseJson(String str){
+    private void parseJsonToDB(String str){
+        OHOLL_DBOpenHelper OHollDBOpenHelper = new OHOLL_DBOpenHelper(getApplicationContext() , DB_FILE , null , 1);
+        mOHollDB = OHollDBOpenHelper.getWritableDatabase();
+
+        Cursor c = mOHollDB.query(true, DB_TABLE, new String[]{"_id","OHoll_num","OHoll_group","scramble","solve"},
+                null, null, null, null, null, null);
+        if (c == null)
+            return;
+
         try {
-            JSONObject root = new JSONObject(str);
-            JSONArray oholls = root.getJSONArray("OHOLL");
-            for (int i = 0; i < str.length(); i++) {
-                JSONObject oholl = oholls.getJSONObject(i);
-                oll[i] = oholl.getString("OHoll_num");
-                group[i] = oholl.getString("OHoll_group");
-                scramble[i] = oholl.getString("scramble");
-                solve[i] = oholl.getString("solve");
+            //把res/raw/oholl_data.json資料解析成陣列並丟入資料庫
+            if (c.getCount() == 0) {
+                JSONObject root = new JSONObject(str);
+                JSONArray oholls = root.getJSONArray("OHOLL");
+                for (int i = 0; i < str.length(); i++) {
+                    JSONObject oholl = oholls.getJSONObject(i);
+                    ContentValues newRow = new ContentValues();
+                    newRow.put("OHoll_num", oholl.getString("OHoll_num"));
+                    newRow.put("OHoll_group",oholl.getString("OHoll_group"));
+                    newRow.put("scramble", oholl.getString("scramble"));
+                    newRow.put("solve", oholl.getString("solve"));
+                    mOHollDB.insert(DB_TABLE, null, newRow);
+                }
             }
-            Log.d("str.length()", String.valueOf(str.length()));
-        } catch (JSONException e) {
-            e.printStackTrace();
+                Log.d("str.length()", String.valueOf(str.length()));
+            } catch(JSONException e){
+                e.printStackTrace();
+            }
+        putSelectData();
+
+        //創建一個陣列放每一個小組的第一個數字
+        //indexOf可以找尋ArrayList中的值，如果有重複會回傳第一個找尋到的int索引值(索引值從0開始)
+        for (int i = 0; i < chk_select.size(); i++) {
+            group_num.add(al_group.indexOf(chk_select.get(i)));//把選取的群組第一個索引值放入group_num
+            Log.d(TAG, "chk_select.get(i): " + chk_select.get(i));
+            Log.d(TAG, "group_num.get(i): " + group_num.get(i));
+        }
+
+    }
+
+    private void putSelectData(){
+        //拿到MainActivity傳來的ArrayList
+        Intent intent = getIntent();
+        chk_select = intent.getStringArrayListExtra("chk_select");
+        al_DBnum.clear();
+        al_ollnum.clear();
+        al_group.clear();
+        al_scramble.clear();
+        al_solve.clear();
+        //把搜尋群組的資料丟入ArrayList
+        for (int i = 0; i < chk_select.size(); i++) {
+            Cursor c = mOHollDB.query(true, DB_TABLE, new String[]{"_id","OHoll_num","OHoll_group","scramble","solve"},
+                    "OHoll_group=" + "\"" + chk_select.get(i)
+                            + "\"", null, null, null, null, null);
+            c.moveToFirst();
+            al_DBnum.add(c.getString(0));
+            al_ollnum.add(c.getString(1));
+            al_group.add(c.getString(2));
+            al_scramble.add(c.getString(3));
+            al_solve.add(c.getString(4));
+
+            while (c.moveToNext()) {
+                al_DBnum.add(c.getString(0));
+                al_ollnum.add(c.getString(1));
+                al_group.add(c.getString(2));
+                al_scramble.add(c.getString(3));
+                al_solve.add(c.getString(4));
+            }
+        }
+
+
+    }
+
+    private void dataToObject(int num){
+        Log.d(TAG, "num :"+ num);
+        Log.d(TAG, "al_DBnum : "+ al_DBnum.get(num));
+        iv_OHOLL.setImageResource(picture[Integer.parseInt(al_DBnum.get(num))-1]);
+        tv_ollnum.setText(al_ollnum.get(num));
+        tv_group.setText(al_group.get(num));
+        tv_scramble.setText(al_scramble.get(num));
+        tv_solve.setText(al_solve.get(num));
+    }
+
+    private final View.OnClickListener btnClick = v -> {
+        int nowGroupNum;
+        //group_num[]代表每一個群組的第一個索引值
+        if (v.getId()==R.id.btn_previous){
+            num = loopGroupNum(al_DBnum.size(),-1,num);
+            dataToObject(num);
+        }else if (v.getId()==R.id.btn_next){
+            num = loopGroupNum(al_DBnum.size(),1,num);
+            dataToObject(num);
+        }else if (v.getId()==R.id.btn_groupPrevious){
+            if (chk_select.size()==1){
+                Toast.makeText(this,"只有選擇一個群組",Toast.LENGTH_LONG).show();
+            }else {
+                int a = al_group.indexOf(tv_group.getText().toString());//找尋現在顯示畫面的群組第一個
+                nowGroupNum = group_num.indexOf(a);//比對現在畫面是哪一組
+                num = group_num.get(loopGroupNum(chk_select.size(),-1,nowGroupNum));
+                Log.d(TAG, "groupPrevious: "+ num);
+                dataToObject(num);
+            }
+        }else if (v.getId()==R.id.btn_groupNext){
+            if (chk_select.size()==1){
+                Toast.makeText(this,"只有選擇一個群組",Toast.LENGTH_LONG).show();
+            }else {
+                int b = al_group.indexOf(tv_group.getText().toString());//找尋現在顯示畫面的群組第一個
+                nowGroupNum = group_num.indexOf(b);//比對現在畫面是哪一組
+                num = group_num.get(loopGroupNum(chk_select.size(),1,nowGroupNum));
+                Log.d(TAG, "groupNext: "+num);
+                dataToObject(num);
+            }
+        }
+    };
+
+    //製作一個可以在陣列的索引值0~(arraylength-1)一直循環的方法
+    //ex:int a[3] 你把陣列的內容放在某個按鈕上，一直按會讓他0~2一直循環
+    //arraylength=a.length,plusOrMinusValue=增減值,now_num是代表現在在陣列中的哪個索引值0~(arraylength-1)
+    private int loopGroupNum(int arraylength,int plusOrMinusValue,int now_num){
+        if (now_num+plusOrMinusValue >= arraylength){
+            return (now_num+plusOrMinusValue)-arraylength;
+        }else if (now_num+plusOrMinusValue < 0){
+            return (now_num+plusOrMinusValue)+arraylength;
+        }else {
+            return now_num+plusOrMinusValue;
         }
     }
 
