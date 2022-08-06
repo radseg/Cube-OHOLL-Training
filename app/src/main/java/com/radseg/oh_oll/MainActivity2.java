@@ -4,11 +4,16 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,37 +34,45 @@ import static android.content.ContentValues.TAG;
 public class MainActivity2 extends AppCompatActivity {
     private ImageView iv_OHOLL;
     private TextView tv_ollnum,tv_group,tv_scramble,tv_solve;
-    private int[]btn = {R.id.btn_groupNext, R.id.btn_groupPrevious, R.id.btn_previous, R.id.btn_next};
-    private int[]picture = {R.drawable.oll_1,R.drawable.oll_2,R.drawable.oll_3,R.drawable.oll_4,R.drawable.oll_5,R.drawable.oll_6,R.drawable.oll_7,R.drawable.oll_8,R.drawable.oll_9,R.drawable.oll_10,R.drawable.oll_11,R.drawable.oll_12,R.drawable.oll_13,R.drawable.oll_14,R.drawable.oll_15,R.drawable.oll_16,R.drawable.oll_17,R.drawable.oll_18,R.drawable.oll_19,R.drawable.oll_20,
+    private SeekBar skBar_group;
+    private Switch swt_scramble;
+    private final int[]btn = {R.id.btn_groupNext, R.id.btn_groupPrevious, R.id.btn_previous, R.id.btn_next};
+    private final int[]picture = {R.drawable.oll_1,R.drawable.oll_2,R.drawable.oll_3,R.drawable.oll_4,R.drawable.oll_5,R.drawable.oll_6,R.drawable.oll_7,R.drawable.oll_8,R.drawable.oll_9,R.drawable.oll_10,R.drawable.oll_11,R.drawable.oll_12,R.drawable.oll_13,R.drawable.oll_14,R.drawable.oll_15,R.drawable.oll_16,R.drawable.oll_17,R.drawable.oll_18,R.drawable.oll_19,R.drawable.oll_20,
             R.drawable.oll_21,R.drawable.oll_22,R.drawable.oll_23,R.drawable.oll_24,R.drawable.oll_25,R.drawable.oll_26,R.drawable.oll_27,R.drawable.oll_28,R.drawable.oll_29,R.drawable.oll_30,R.drawable.oll_31,R.drawable.oll_32,R.drawable.oll_33,R.drawable.oll_34,R.drawable.oll_35,R.drawable.oll_36,R.drawable.oll_37,R.drawable.oll_38,R.drawable.oll_39,R.drawable.oll_40,
             R.drawable.oll_41,R.drawable.oll_42,R.drawable.oll_43,R.drawable.oll_44,R.drawable.oll_45,R.drawable.oll_46,R.drawable.oll_47,R.drawable.oll_48,R.drawable.oll_49,R.drawable.oll_50,R.drawable.oll_51,R.drawable.oll_52,R.drawable.oll_53,R.drawable.oll_54,R.drawable.oll_55,R.drawable.oll_56,R.drawable.oll_57};
     private int num=0;
-    private ArrayList<Integer> group_num = new ArrayList<Integer>();//把選取的群組第一個索引值放入group_num
-    private ArrayList<String> chk_select = new ArrayList<String>();//接收MainActivity傳來的群組
-    private ArrayList<String> al_DBnum = new ArrayList<String>();
-    private ArrayList<String> al_ollnum = new ArrayList<String>();
-    private ArrayList<String> al_group = new ArrayList<String>();
-    private ArrayList<String> al_scramble = new ArrayList<String>();
-    private ArrayList<String> al_solve = new ArrayList<String>();
+    private final ArrayList<Integer> group_num = new ArrayList<>();//把選取的群組第一個索引值放入group_num
+    private ArrayList<String> chk_select = new ArrayList<>();//接收MainActivity傳來的群組
+    private ArrayList<String> al_DBnum = new ArrayList<>();//搜尋完的到的列表的基本排序1~x
+    private ArrayList<String> al_ollnum = new ArrayList<>();
+    private ArrayList<String> al_group = new ArrayList<>();
+    private ArrayList<String> al_scramble = new ArrayList<>();
+    private ArrayList<String> al_solve = new ArrayList<>();
     private SQLiteDatabase mOHollDB;
     private static final String DB_FILE = "oholl.db" , DB_TABLE = "oholl";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        for (int id:btn) {((Button)findViewById(id)).setOnClickListener(btnClick);}
         iv_OHOLL = findViewById(R.id.iv_oll);
         iv_OHOLL.setImageResource(R.drawable.oll_1);
         tv_ollnum = findViewById(R.id.tv_ollnum);
         tv_group = findViewById(R.id.tv_group);
         tv_scramble = findViewById(R.id.tv_scramble);
+        swt_scramble = findViewById(R.id.swt_scramble);
+        swt_scramble.setOnCheckedChangeListener(swtChange);
+        skBar_group = findViewById(R.id.skBar_group);
+        skBar_group.setOnSeekBarChangeListener(skBarChange);
         tv_solve = findViewById(R.id.tv_solve);
-        /*
+
         tv_solve.setOnClickListener(v -> {
-            tv_solve.setInputType(TYPE_NULL);
-            tv_solve.setBackgroundColor(getResources().getColor(R.color.teal_200));
+            if (swt_scramble.isChecked()) {
+                tv_solve.setInputType(InputType.TYPE_NULL);
+                tv_solve.setBackgroundColor(getResources().getColor(R.color.teal_200));
+            }
         });
-        */
-        for (int id:btn) {((Button)findViewById(id)).setOnClickListener(btnClick);}
+
         load();
         dataToObject(num);
 
@@ -162,6 +175,15 @@ public class MainActivity2 extends AppCompatActivity {
         tv_group.setText(al_group.get(num));
         tv_scramble.setText(al_scramble.get(num));
         tv_solve.setText(al_solve.get(num));
+        skBar_group.setProgress(num);
+        skBar_group.setMax(al_DBnum.size()-1);
+
+        if (swt_scramble.isChecked()) {
+            tv_solve.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_WEB_PASSWORD);
+        } else if (!swt_scramble.isChecked()){
+            tv_solve.setInputType(InputType.TYPE_NULL);
+        }
+        tv_solve.setBackgroundColor(Color.TRANSPARENT);
     }
 
     private final View.OnClickListener btnClick = v -> {
@@ -208,5 +230,34 @@ public class MainActivity2 extends AppCompatActivity {
             return now_num+plusOrMinusValue;
         }
     }
+
+    private final SeekBar.OnSeekBarChangeListener skBarChange = new SeekBar.OnSeekBarChangeListener() {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            dataToObject(progress);
+        }
+        //按住時會觸發
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+        //停止拖曳時觸發事件
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
+    };
+
+    private final CompoundButton.OnCheckedChangeListener swtChange = new CompoundButton.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            if (swt_scramble.isChecked()) {
+                tv_solve.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_WEB_PASSWORD);
+            } else if (!swt_scramble.isChecked()){
+                tv_solve.setInputType(InputType.TYPE_NULL);
+            }
+        }
+    };
+
 
 }
