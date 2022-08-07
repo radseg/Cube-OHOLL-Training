@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#4BB6E8"
     android:layout_gravity="center"
     tools:context=".MainActivity">
 
@@ -19,11 +20,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btn_ok"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/button_shape_off"
+        android:text="@string/group_ok"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chk_tv8" />
+
     <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/chk_tv1"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/button_shape_off"
         android:button="@color/black"
         android:checked="false"
         android:gravity="center"
@@ -37,12 +50,13 @@
         android:id="@+id/chk_tv2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button_shape_off"
         android:button="@color/black"
         android:gravity="center"
         android:text="@string/group_2"
         android:textAlignment="gravity"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chk_tv1" />
 
@@ -50,12 +64,13 @@
         android:id="@+id/chk_tv3"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button_shape_off"
         android:button="@color/black"
         android:gravity="center"
         android:text="@string/group_3"
         android:textAlignment="gravity"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chk_tv2" />
 
@@ -63,12 +78,13 @@
         android:id="@+id/chk_tv4"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button_shape_off"
         android:button="@color/black"
         android:gravity="center"
         android:text="@string/group_4"
         android:textAlignment="gravity"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chk_tv3" />
 
@@ -76,12 +92,13 @@
         android:id="@+id/chk_tv5"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button_shape_off"
         android:button="@color/black"
         android:gravity="center"
         android:text="@string/group_5"
         android:textAlignment="gravity"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chk_tv4" />
 
@@ -89,12 +106,13 @@
         android:id="@+id/chk_tv6"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button_shape_off"
         android:button="@color/black"
         android:gravity="center"
         android:text="@string/group_6"
         android:textAlignment="gravity"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chk_tv5" />
 
@@ -102,12 +120,13 @@
         android:id="@+id/chk_tv7"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button_shape_off"
         android:button="@color/black"
         android:gravity="center"
         android:text="@string/group_7"
         android:textAlignment="gravity"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chk_tv6" />
 
@@ -115,6 +134,8 @@
         android:id="@+id/chk_tv8"
         android:layout_width="0dp"
         android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button_shape_off"
         android:button="@color/black"
         android:gravity="center"
         android:text="@string/group_8"
@@ -122,14 +143,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chk_tv7" />
-
-    <Button
-        android:id="@+id/btn_ok"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/group_ok"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chk_tv8" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -36,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
     private final View.OnClickListener chkGroup_Onclick = v -> {
         if (((AppCompatCheckBox)findViewById(v.getId())).isChecked()){
-            ((AppCompatCheckBox)findViewById(v.getId())).setBackgroundColor(getResources().getColor(R.color.teal_200));
+            ((AppCompatCheckBox)findViewById(v.getId())).setBackground(getResources().getDrawable(R.drawable.button_shape_on));
         }else {
-            ((AppCompatCheckBox)findViewById(v.getId())).setBackgroundColor(getResources().getColor(R.color.white));
+            ((AppCompatCheckBox)findViewById(v.getId())).setBackground(getResources().getDrawable(R.drawable.button_shape_off));
         }
 
     };

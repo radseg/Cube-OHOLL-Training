@@ -9,16 +9,16 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.radseg.oh_oll.DB.OHOLL_DBOpenHelper;
 
 import org.json.JSONArray;
@@ -35,7 +35,7 @@ public class MainActivity2 extends AppCompatActivity {
     private ImageView iv_OHOLL;
     private TextView tv_ollnum,tv_group,tv_scramble,tv_solve;
     private SeekBar skBar_group;
-    private Switch swt_scramble;
+    private SwitchMaterial swt_scramble;
     private final int[]btn = {R.id.btn_groupNext, R.id.btn_groupPrevious, R.id.btn_previous, R.id.btn_next};
     private final int[]picture = {R.drawable.oll_1,R.drawable.oll_2,R.drawable.oll_3,R.drawable.oll_4,R.drawable.oll_5,R.drawable.oll_6,R.drawable.oll_7,R.drawable.oll_8,R.drawable.oll_9,R.drawable.oll_10,R.drawable.oll_11,R.drawable.oll_12,R.drawable.oll_13,R.drawable.oll_14,R.drawable.oll_15,R.drawable.oll_16,R.drawable.oll_17,R.drawable.oll_18,R.drawable.oll_19,R.drawable.oll_20,
             R.drawable.oll_21,R.drawable.oll_22,R.drawable.oll_23,R.drawable.oll_24,R.drawable.oll_25,R.drawable.oll_26,R.drawable.oll_27,R.drawable.oll_28,R.drawable.oll_29,R.drawable.oll_30,R.drawable.oll_31,R.drawable.oll_32,R.drawable.oll_33,R.drawable.oll_34,R.drawable.oll_35,R.drawable.oll_36,R.drawable.oll_37,R.drawable.oll_38,R.drawable.oll_39,R.drawable.oll_40,
@@ -54,7 +54,7 @@ public class MainActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        for (int id:btn) {((Button)findViewById(id)).setOnClickListener(btnClick);}
+        for (int id:btn) {((MaterialButton)findViewById(id)).setOnClickListener(btnClick);}
         iv_OHOLL = findViewById(R.id.iv_oll);
         iv_OHOLL.setImageResource(R.drawable.oll_1);
         tv_ollnum = findViewById(R.id.tv_ollnum);
@@ -235,6 +235,7 @@ public class MainActivity2 extends AppCompatActivity {
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             dataToObject(progress);
+            num = progress;
         }
         //按住時會觸發
         @Override
@@ -256,6 +257,7 @@ public class MainActivity2 extends AppCompatActivity {
             } else if (!swt_scramble.isChecked()){
                 tv_solve.setInputType(InputType.TYPE_NULL);
             }
+            tv_solve.setBackgroundColor(Color.TRANSPARENT);
         }
     };
 

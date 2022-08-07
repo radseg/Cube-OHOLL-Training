@@ -4,41 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#4BB6E8"
     tools:context=".MainActivity2">
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_previous"
-        android:layout_width="150dp"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:layout_centerInParent="true"
+        android:layout_width="140dp"
         android:layout_height="55dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:text="上一個 "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_groupPrevious"
         app:layout_constraintTop_toBottomOf="@+id/tv_solve" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_next"
-        android:layout_width="150dp"
+        android:layout_width="140dp"
         android:layout_height="55dp"
+        android:layout_marginEnd="8dp"
         android:text="下一個"
         app:layout_constraintBottom_toBottomOf="@+id/btn_previous"
         app:layout_constraintEnd_toStartOf="@+id/btn_groupNext"
         app:layout_constraintTop_toTopOf="@+id/btn_previous" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_groupPrevious"
         android:layout_width="45dp"
         android:layout_height="55dp"
+        android:layout_marginStart="8dp"
         android:text="@string/group_next"
         app:layout_constraintBottom_toBottomOf="@+id/btn_previous"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btn_previous"
         app:rippleColor="@color/purple_200" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_groupNext"
         android:layout_width="45dp"
         android:layout_height="55dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/group_previous"
         app:layout_constraintBottom_toBottomOf="@+id/btn_next"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,16 +70,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_group" />
 
-    <Switch
+    <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/swt_scramble"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_solve"
+        android:layout_marginStart="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/tv_solveText" />
+        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintStart_toEndOf="@+id/tv_solveText"
+        app:layout_constraintTop_toBottomOf="@+id/tv_scramble" />
 
     <TextView
         android:id="@+id/tv_ollnum"
