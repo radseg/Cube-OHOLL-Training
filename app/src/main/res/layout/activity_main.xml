@@ -38,7 +38,7 @@
         android:layout_marginTop="32dp"
         android:background="@drawable/button_shape_off"
         android:button="@color/black"
-        android:checked="false"
+        android:clickable="false"
         android:gravity="center"
         android:text="@string/group_1"
         android:textAlignment="gravity"

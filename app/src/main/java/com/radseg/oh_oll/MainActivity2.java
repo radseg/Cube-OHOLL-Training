@@ -2,6 +2,7 @@ package com.radseg.oh_oll;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -17,7 +18,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.radseg.oh_oll.DB.OHOLL_DBOpenHelper;
 
@@ -32,8 +32,8 @@ import java.util.Scanner;
 import static android.content.ContentValues.TAG;
 
 public class MainActivity2 extends AppCompatActivity {
-    private ImageView iv_OHOLL;
-    private TextView tv_ollnum,tv_group,tv_scramble,tv_solve;
+    private ImageView iv_OhOll;
+    private TextView tv_ollNum,tv_group,tv_scramble,tv_solve;
     private SeekBar skBar_group;
     private SwitchMaterial swt_scramble;
     private final int[]btn = {R.id.btn_groupNext, R.id.btn_groupPrevious, R.id.btn_previous, R.id.btn_next};
@@ -43,21 +43,21 @@ public class MainActivity2 extends AppCompatActivity {
     private int num=0;
     private final ArrayList<Integer> group_num = new ArrayList<>();//把選取的群組第一個索引值放入group_num
     private ArrayList<String> chk_select = new ArrayList<>();//接收MainActivity傳來的群組
-    private ArrayList<String> al_DBnum = new ArrayList<>();//搜尋完的到的列表的基本排序1~x
-    private ArrayList<String> al_ollnum = new ArrayList<>();
-    private ArrayList<String> al_group = new ArrayList<>();
-    private ArrayList<String> al_scramble = new ArrayList<>();
-    private ArrayList<String> al_solve = new ArrayList<>();
-    private SQLiteDatabase mOHollDB;
-    private static final String DB_FILE = "oholl.db" , DB_TABLE = "oholl";
+    private final ArrayList<String> al_DBNum = new ArrayList<>();//搜尋完的到的列表的基本排序1~x
+    private final ArrayList<String> al_OllNum = new ArrayList<>();
+    private final ArrayList<String> al_group = new ArrayList<>();
+    private final ArrayList<String> al_scramble = new ArrayList<>();
+    private final ArrayList<String> al_solve = new ArrayList<>();
+    private SQLiteDatabase mOhOllDB;
+    private static final String DB_FILE = "ohOll.db" , DB_TABLE = "ohOll";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        for (int id:btn) {((MaterialButton)findViewById(id)).setOnClickListener(btnClick);}
-        iv_OHOLL = findViewById(R.id.iv_oll);
-        iv_OHOLL.setImageResource(R.drawable.oll_1);
-        tv_ollnum = findViewById(R.id.tv_ollnum);
+        for (int id:btn) {(findViewById(id)).setOnClickListener(btnClick);}
+        iv_OhOll = findViewById(R.id.iv_oll);
+        iv_OhOll.setImageResource(R.drawable.oll_1);
+        tv_ollNum = findViewById(R.id.tv_ollnum);
         tv_group = findViewById(R.id.tv_group);
         tv_scramble = findViewById(R.id.tv_scramble);
         swt_scramble = findViewById(R.id.swt_scramble);
@@ -65,6 +65,11 @@ public class MainActivity2 extends AppCompatActivity {
         skBar_group = findViewById(R.id.skBar_group);
         skBar_group.setOnSeekBarChangeListener(skBarChange);
         tv_solve = findViewById(R.id.tv_solve);
+
+        SharedPreferences switchData = getSharedPreferences("data",MODE_PRIVATE);
+
+        if (switchData.getInt("switch_select",-1)==1)
+            swt_scramble.setChecked(true);
 
         tv_solve.setOnClickListener(v -> {
             if (swt_scramble.isChecked()) {
@@ -81,7 +86,7 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     private void load(){
-        //把res/raw/oholl_data.json裡面的內容全部讀入
+        //把res/raw/ohOll_data.json裡面的內容全部讀入
         InputStream ollData = getResources().openRawResource(R.raw.oholl_data);
         Scanner scanner = new Scanner(ollData);
         StringBuilder builder = new StringBuilder();
@@ -95,33 +100,34 @@ public class MainActivity2 extends AppCompatActivity {
 
 
     private void parseJsonToDB(String str){
-        OHOLL_DBOpenHelper OHollDBOpenHelper = new OHOLL_DBOpenHelper(getApplicationContext() , DB_FILE , null , 1);
-        mOHollDB = OHollDBOpenHelper.getWritableDatabase();
+        OHOLL_DBOpenHelper ohOllDBOpenHelper = new OHOLL_DBOpenHelper(getApplicationContext() , DB_FILE , null , 1);
+        mOhOllDB = ohOllDBOpenHelper.getWritableDatabase();
 
-        Cursor c = mOHollDB.query(true, DB_TABLE, new String[]{"_id","OHoll_num","OHoll_group","scramble","solve"},
+        Cursor c = mOhOllDB.query(true, DB_TABLE, new String[]{"_id","OHoll_num","OHoll_group","scramble","solve"},
                 null, null, null, null, null, null);
         if (c == null)
             return;
 
         try {
-            //把res/raw/oholl_data.json資料解析成陣列並丟入資料庫
+            //把res/raw/ohOll_data.json資料解析成陣列並丟入資料庫
             if (c.getCount() == 0) {
                 JSONObject root = new JSONObject(str);
-                JSONArray oholls = root.getJSONArray("OHOLL");
+                JSONArray ohOllS = root.getJSONArray("OHOLL");
                 for (int i = 0; i < str.length(); i++) {
-                    JSONObject oholl = oholls.getJSONObject(i);
+                    JSONObject oholl = ohOllS.getJSONObject(i);
                     ContentValues newRow = new ContentValues();
                     newRow.put("OHoll_num", oholl.getString("OHoll_num"));
                     newRow.put("OHoll_group",oholl.getString("OHoll_group"));
                     newRow.put("scramble", oholl.getString("scramble"));
                     newRow.put("solve", oholl.getString("solve"));
-                    mOHollDB.insert(DB_TABLE, null, newRow);
+                    mOhOllDB.insert(DB_TABLE, null, newRow);
                 }
             }
                 Log.d("str.length()", String.valueOf(str.length()));
             } catch(JSONException e){
                 e.printStackTrace();
             }
+        c.close();
         putSelectData();
 
         //創建一個陣列放每一個小組的第一個數字
@@ -138,30 +144,31 @@ public class MainActivity2 extends AppCompatActivity {
         //拿到MainActivity傳來的ArrayList
         Intent intent = getIntent();
         chk_select = intent.getStringArrayListExtra("chk_select");
-        al_DBnum.clear();
-        al_ollnum.clear();
+        al_DBNum.clear();
+        al_OllNum.clear();
         al_group.clear();
         al_scramble.clear();
         al_solve.clear();
         //把搜尋群組的資料丟入ArrayList
         for (int i = 0; i < chk_select.size(); i++) {
-            Cursor c = mOHollDB.query(true, DB_TABLE, new String[]{"_id","OHoll_num","OHoll_group","scramble","solve"},
+            Cursor c = mOhOllDB.query(true, DB_TABLE, new String[]{"_id","OHoll_num","OHoll_group","scramble","solve"},
                     "OHoll_group=" + "\"" + chk_select.get(i)
                             + "\"", null, null, null, null, null);
             c.moveToFirst();
-            al_DBnum.add(c.getString(0));
-            al_ollnum.add(c.getString(1));
+            al_DBNum.add(c.getString(0));
+            al_OllNum.add(c.getString(1));
             al_group.add(c.getString(2));
             al_scramble.add(c.getString(3));
             al_solve.add(c.getString(4));
 
             while (c.moveToNext()) {
-                al_DBnum.add(c.getString(0));
-                al_ollnum.add(c.getString(1));
+                al_DBNum.add(c.getString(0));
+                al_OllNum.add(c.getString(1));
                 al_group.add(c.getString(2));
                 al_scramble.add(c.getString(3));
                 al_solve.add(c.getString(4));
             }
+            c.close();
         }
 
 
@@ -169,14 +176,14 @@ public class MainActivity2 extends AppCompatActivity {
 
     private void dataToObject(int num){
         Log.d(TAG, "num :"+ num);
-        Log.d(TAG, "al_DBnum : "+ al_DBnum.get(num));
-        iv_OHOLL.setImageResource(picture[Integer.parseInt(al_DBnum.get(num))-1]);
-        tv_ollnum.setText(al_ollnum.get(num));
+        Log.d(TAG, "al_DBNum : "+ al_DBNum.get(num));
+        iv_OhOll.setImageResource(picture[Integer.parseInt(al_DBNum.get(num))-1]);
+        tv_ollNum.setText(al_OllNum.get(num));
         tv_group.setText(al_group.get(num));
         tv_scramble.setText(al_scramble.get(num));
         tv_solve.setText(al_solve.get(num));
         skBar_group.setProgress(num);
-        skBar_group.setMax(al_DBnum.size()-1);
+        skBar_group.setMax(al_DBNum.size()-1);
 
         if (swt_scramble.isChecked()) {
             tv_solve.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_WEB_PASSWORD);
@@ -190,10 +197,10 @@ public class MainActivity2 extends AppCompatActivity {
         int nowGroupNum;
         //group_num[]代表每一個群組的第一個索引值
         if (v.getId()==R.id.btn_previous){
-            num = loopGroupNum(al_DBnum.size(),-1,num);
+            num = loopGroupNum(al_DBNum.size(),-1,num);
             dataToObject(num);
         }else if (v.getId()==R.id.btn_next){
-            num = loopGroupNum(al_DBnum.size(),1,num);
+            num = loopGroupNum(al_DBNum.size(),1,num);
             dataToObject(num);
         }else if (v.getId()==R.id.btn_groupPrevious){
             if (chk_select.size()==1){
@@ -218,14 +225,14 @@ public class MainActivity2 extends AppCompatActivity {
         }
     };
 
-    //製作一個可以在陣列的索引值0~(arraylength-1)一直循環的方法
+    //製作一個可以在陣列的索引值0~(arrayLength-1)一直循環的方法
     //ex:int a[3] 你把陣列的內容放在某個按鈕上，一直按會讓他0~2一直循環
-    //arraylength=a.length,plusOrMinusValue=增減值,now_num是代表現在在陣列中的哪個索引值0~(arraylength-1)
-    private int loopGroupNum(int arraylength,int plusOrMinusValue,int now_num){
-        if (now_num+plusOrMinusValue >= arraylength){
-            return (now_num+plusOrMinusValue)-arraylength;
+    //arrayLength=a.length,plusOrMinusValue=增減值,now_num是代表現在在陣列中的哪個索引值0~(arrayLength-1)
+    private int loopGroupNum(int arrayLength,int plusOrMinusValue,int now_num){
+        if (now_num+plusOrMinusValue >= arrayLength){
+            return (now_num+plusOrMinusValue)-arrayLength;
         }else if (now_num+plusOrMinusValue < 0){
-            return (now_num+plusOrMinusValue)+arraylength;
+            return (now_num+plusOrMinusValue)+arrayLength;
         }else {
             return now_num+plusOrMinusValue;
         }
@@ -252,10 +259,13 @@ public class MainActivity2 extends AppCompatActivity {
     private final CompoundButton.OnCheckedChangeListener swtChange = new CompoundButton.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            SharedPreferences switchData = getSharedPreferences("data",MODE_PRIVATE);
             if (swt_scramble.isChecked()) {
                 tv_solve.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_WEB_PASSWORD);
+                switchData.edit().putInt("switch_select" , 1).apply();
             } else if (!swt_scramble.isChecked()){
                 tv_solve.setInputType(InputType.TYPE_NULL);
+                switchData.edit().putInt("switch_select" , 0).apply();
             }
             tv_solve.setBackgroundColor(Color.TRANSPARENT);
         }

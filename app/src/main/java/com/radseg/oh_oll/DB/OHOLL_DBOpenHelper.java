@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 public class OHOLL_DBOpenHelper extends SQLiteOpenHelper {
-    private static final String DB_FILE = "oholl.db" , DB_TABLE = "oholl";
+    private static final String DB_FILE = "ohOll.db" , DB_TABLE = "ohOll";
     public OHOLL_DBOpenHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
