@@ -10,8 +10,10 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +38,7 @@ public class MainActivity2 extends AppCompatActivity {
     private TextView tv_ollNum,tv_group,tv_scramble,tv_solve;
     private SeekBar skBar_group;
     private SwitchMaterial swt_scramble;
+    private LinearLayout conLayout;
     private final int[]btn = {R.id.btn_groupNext, R.id.btn_groupPrevious, R.id.btn_previous, R.id.btn_next};
     private final int[]picture = {R.drawable.oll_1,R.drawable.oll_2,R.drawable.oll_3,R.drawable.oll_4,R.drawable.oll_5,R.drawable.oll_6,R.drawable.oll_7,R.drawable.oll_8,R.drawable.oll_9,R.drawable.oll_10,R.drawable.oll_11,R.drawable.oll_12,R.drawable.oll_13,R.drawable.oll_14,R.drawable.oll_15,R.drawable.oll_16,R.drawable.oll_17,R.drawable.oll_18,R.drawable.oll_19,R.drawable.oll_20,
             R.drawable.oll_21,R.drawable.oll_22,R.drawable.oll_23,R.drawable.oll_24,R.drawable.oll_25,R.drawable.oll_26,R.drawable.oll_27,R.drawable.oll_28,R.drawable.oll_29,R.drawable.oll_30,R.drawable.oll_31,R.drawable.oll_32,R.drawable.oll_33,R.drawable.oll_34,R.drawable.oll_35,R.drawable.oll_36,R.drawable.oll_37,R.drawable.oll_38,R.drawable.oll_39,R.drawable.oll_40,
@@ -65,6 +68,32 @@ public class MainActivity2 extends AppCompatActivity {
         skBar_group = findViewById(R.id.skBar_group);
         skBar_group.setOnSeekBarChangeListener(skBarChange);
         tv_solve = findViewById(R.id.tv_solve);
+        conLayout = findViewById(R.id.conLayout);
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)iv_OhOll.getLayoutParams();
+
+        //運用切割畫面時檢視母框架的長來控制image的大小
+        conLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                int Height = conLayout.getMeasuredHeight();
+                Log.d(TAG, "Height: " + Height);
+                LinearLayout.LayoutParams layoutParams_new = layoutParams;
+                if (Height > 0 && Height < 1300){
+                    conLayout.getViewTreeObserver().removeOnGlobalLayoutListener( this);
+                    layoutParams_new.height = 300;
+                    layoutParams_new.width = 300;
+                    iv_OhOll.setLayoutParams(layoutParams_new);
+
+                }else{
+                    conLayout.getViewTreeObserver().removeOnGlobalLayoutListener( this);
+                    layoutParams_new.height = 600;
+                    layoutParams_new.width = 600;
+                    iv_OhOll.setLayoutParams(layoutParams_new);
+                    
+                }
+            }
+        });
+
 
         SharedPreferences switchData = getSharedPreferences("data",MODE_PRIVATE);
 

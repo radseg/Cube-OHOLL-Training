@@ -1,154 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/conLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#4BB6E8"
+
+    android:orientation="vertical"
     tools:context=".MainActivity2">
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_previous"
-        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-        android:layout_width="140dp"
-        android:layout_height="55dp"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="上一個 "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_groupPrevious"
-        app:layout_constraintTop_toBottomOf="@+id/tv_solve" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_next"
-        android:layout_width="140dp"
-        android:layout_height="55dp"
-        android:layout_marginEnd="8dp"
-        android:text="下一個"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_previous"
-        app:layout_constraintEnd_toStartOf="@+id/btn_groupNext"
-        app:layout_constraintTop_toTopOf="@+id/btn_previous" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_groupPrevious"
-        android:layout_width="45dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="8dp"
-        android:text="@string/group_next"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_previous"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_previous"
-        app:rippleColor="@color/purple_200" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_groupNext"
-        android:layout_width="45dp"
-        android:layout_height="55dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/group_previous"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_next"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_next"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageView
-        android:id="@+id/iv_oll"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ollnum" />
-
-    <SeekBar
-        android:id="@+id/skBar_group"
-        android:layout_width="350dp"
-        android:layout_height="17dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_group" />
-
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/swt_scramble"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.043"
-        app:layout_constraintStart_toEndOf="@+id/tv_solveText"
-        app:layout_constraintTop_toBottomOf="@+id/tv_scramble" />
 
     <TextView
         android:id="@+id/tv_ollnum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_weight="0.1"
         android:text="OLL1"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="180dp"
+        tools:layout_editor_absoluteY="24dp" />
 
-    <TextView
-        android:id="@+id/tv_scramble"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:phoneNumber="false"
-        android:text="R U' L' U R' U' L"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_scambleText" />
+    <ImageView
+        android:id="@+id/iv_oll"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_weight="0.2"
+        tools:layout_editor_absoluteX="31dp"
+        tools:layout_editor_absoluteY="70dp" />
 
-    <TextView
-        android:id="@+id/tv_solve"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:text="R U2 R' U' R U' R'"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_solveText" />
+    <SeekBar
+        android:id="@+id/skBar_group"
+        android:layout_width="350dp"
+        android:layout_height="17dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_weight="0.1"
+        tools:layout_editor_absoluteX="31dp"
+        tools:layout_editor_absoluteY="444dp" />
 
     <TextView
         android:id="@+id/tv_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_weight="0.1"
         android:text="All Edges Oriented Cprrectly"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_oll" />
+        tools:layout_editor_absoluteX="95dp"
+        tools:layout_editor_absoluteY="420dp" />
 
     <TextView
         android:id="@+id/tv_scambleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_weight="0.1"
         android:text="@string/scramble"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_oll" />
+        tools:layout_editor_absoluteX="56dp"
+        tools:layout_editor_absoluteY="576dp" />
 
     <TextView
-        android:id="@+id/tv_solveText"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_scramble"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="@string/solve"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_scambleText" />
+        android:layout_weight="0.1"
+        android:gravity="center"
+        android:phoneNumber="false"
+        android:text="R U' L' U R' U' L"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:layout_editor_absoluteY="593dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_solveText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/solve"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            tools:layout_editor_absoluteX="56dp"
+            tools:layout_editor_absoluteY="627dp" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/swt_scramble"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="110dp"
+            tools:layout_editor_absoluteY="613dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_solve"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="0.1"
+        android:gravity="center"
+        android:text="R U2 R' U' R U' R'"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:layout_editor_absoluteY="647dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_groupPrevious"
+            android:layout_width="45dp"
+            android:layout_height="55dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="0.2"
+            android:text="@string/group_next"
+            app:rippleColor="@color/purple_200"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="677dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_previous"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="120dp"
+            android:layout_height="55dp"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="0.3"
+            android:text="上一個 "
+            tools:layout_editor_absoluteX="66dp"
+            tools:layout_editor_absoluteY="677dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_next"
+            android:layout_width="120dp"
+            android:layout_height="55dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="0.3"
+            android:text="下一個"
+            tools:layout_editor_absoluteX="210dp"
+            tools:layout_editor_absoluteY="677dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_groupNext"
+            android:layout_width="45dp"
+            android:layout_height="55dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="0.2"
+            android:text="@string/group_previous"
+            tools:layout_editor_absoluteX="358dp"
+            tools:layout_editor_absoluteY="677dp" />
+
+    </LinearLayout>
+
+</LinearLayout>
